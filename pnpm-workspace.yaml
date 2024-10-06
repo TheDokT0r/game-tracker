@@ -1,3 +1,8 @@
 packages:
   - services/*
   - libs/*
+
+catalog:
+  mongodb: 6.9.0
+  typescript: 5.6.2
+  '@types/node': 22.7.4
