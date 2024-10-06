@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "start": "vite preview"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.59.0",
@@ -15,7 +15,8 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.26.2",
-    "sass": "^1.79.4"
+    "sass": "^1.79.4",
+    "dotenv": "catalog:"
   },
   "devDependencies": {
     "@eslint/js": "^9.11.1",
