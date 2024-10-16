@@ -1,8 +1,12 @@
-import express from "express";
+import express, { response } from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
-import { createAccount } from "./Utils/userDB";
-import { authenticateToken, generateAccessToken } from "./Utils/jwt";
+import { createAccount, isValidLoginInfo } from "./Utils/userDB";
+import {
+  RequestWithUser,
+  authenticateToken,
+  generateAccessToken,
+} from "./Utils/jwt";
 import { dotenvConfig } from "service-assist";
 dotenvConfig();
 
@@ -15,7 +19,7 @@ app.post("/signup", async (req, res) => {
   const response = await createAccount(username, email, password);
 
   if (response.acknowledged) {
-    const token = generateAccessToken(email);
+    const token = generateAccessToken(response.insertedId);
     res.status(200).json(token);
     return;
   }
@@ -23,4 +27,22 @@ app.post("/signup", async (req, res) => {
   res.sendStatus(500);
 });
 
-app.post("/profile", authenticateToken, (req, res) => {});
+app.post("/login", async (req, res) => {
+  const { email, password } = req.body;
+
+  const userId = await isValidLoginInfo(email, password);
+
+  if (userId) {
+    const token = generateAccessToken(userId);
+    res.status(200).json(token);
+    return;
+  }
+
+  res.sendStatus(401);
+});
+
+app.get("/profile", authenticateToken, (req, res) => {
+  const { userId } = req as RequestWithUser;
+
+  
+});

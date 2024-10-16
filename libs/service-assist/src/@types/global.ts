@@ -19,7 +19,16 @@ declare global {
     username: string;
     passwordHash: string;
     email: string;
-    games: UserGameData[];
+  }
+
+  interface UserPublicProfile {
+    _id: ObjectId;
+    bio?: string;
+    gamesCollection: UserGameData[];
+    creationDate: Date;
+    isOnline: boolean;
+    lastLogin: Date;
+    friends: ObjectId[];
   }
 
   namespace NodeJS {

@@ -1,14 +1,15 @@
 import type { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
+import { ObjectId } from "mongodb";
 
 export interface RequestWithUser extends Request {
-  user: string | jwt.JwtPayload;
+  userId: string | jwt.JwtPayload;
 }
 
 const { TOKEN_SECRET } = process.env;
 
-export const generateAccessToken = (email: string) => {
-  return jwt.sign(email, TOKEN_SECRET, { expiresIn: "7d" });
+export const generateAccessToken = (_id: ObjectId) => {
+  return jwt.sign(_id.toString(), TOKEN_SECRET, { expiresIn: "30 days" });
 };
 
 export const authenticateToken = (
@@ -27,7 +28,7 @@ export const authenticateToken = (
       }
 
       if (user) {
-        (req as RequestWithUser).user = user;
+        (req as RequestWithUser).userId = user;
       }
 
       next();
