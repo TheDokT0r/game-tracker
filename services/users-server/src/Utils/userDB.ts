@@ -11,7 +11,7 @@ const INFO_COLLECTION = "basic_info";
 const PROFILES_COLLECTION = "profiles";
 
 const getCollection = async (
-  collectionName: string
+  collectionName: string,
 ): Promise<{
   collection: Collection<Document>;
   client: MongoClient;
@@ -25,7 +25,7 @@ const getCollection = async (
 };
 
 const createUserProfile = async (
-  userId: ObjectId
+  userId: ObjectId,
 ): Promise<InsertOneResult<Document>> => {
   const { collection, client } = await getCollection(PROFILES_COLLECTION);
 
@@ -47,7 +47,7 @@ const createUserProfile = async (
 export const createAccount = async (
   username: string,
   email: string,
-  password: string
+  password: string,
 ): Promise<InsertOneResult<Document>> => {
   // Creates basic info page
   const { collection, client } = await getCollection(INFO_COLLECTION);
@@ -69,7 +69,7 @@ export const createAccount = async (
 
 export const isValidLoginInfo = async (
   email: string,
-  password: string
+  password: string,
 ): Promise<ObjectId | null> => {
   const { collection, client } = await getCollection(INFO_COLLECTION);
 

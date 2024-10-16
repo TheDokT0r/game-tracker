@@ -43,6 +43,4 @@ app.post("/login", async (req, res) => {
 
 app.get("/profile", authenticateToken, (req, res) => {
   const { userId } = req as RequestWithUser;
-
-  
 });

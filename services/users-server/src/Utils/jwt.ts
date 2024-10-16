@@ -15,7 +15,7 @@ export const generateAccessToken = (_id: ObjectId) => {
 export const authenticateToken = (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => {
   const authHeader = req.headers.authorization;
 
