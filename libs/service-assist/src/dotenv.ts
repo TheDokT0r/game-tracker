@@ -6,5 +6,14 @@ export const dotenvConfig = (path?: string) => {
     return;
   }
 
-  dotenv.config({ path: ["../../.env", "../../.env.production", "../../.env.development", ".env", ".env.production", ".env.development"] });
+  dotenv.config({
+    path: [
+      "../../.env",
+      "../../.env.production",
+      "../../.env.development",
+      ".env",
+      ".env.production",
+      ".env.development",
+    ],
+  });
 };
