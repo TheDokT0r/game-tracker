@@ -1,0 +1,19 @@
+FROM node:20-slim AS build
+WORKDIR /app
+RUN corepack enable
+RUN corepack use pnpm
+
+COPY pnpm-*.yaml .
+COPY tsconfig.*.json .
+
+COPY libs libs
+
+WORKDIR /app/services/frontend
+COPY services/frontend .
+RUN pnpm i
+RUN pnpm build
+
+FROM nginx:1.27.2-alpine AS base
+COPY --from=build /app/services/frontend/dist /usr/share/nginx/html
+
+CMD [ "nginx", "-g", "daemon off;" ]

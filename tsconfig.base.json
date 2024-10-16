@@ -10,9 +10,11 @@
     "noFallthroughCasesInSwitch": true,
     // Needed for CommonJS modules
     "allowSyntheticDefaultImports": true,
-    "declaration": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "skipLibCheck": true
+  },
+  "tsc-alias": {
+    "resolveFullPaths": true
   }
 }

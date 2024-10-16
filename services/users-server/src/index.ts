@@ -1,4 +1,4 @@
-import express, { response } from "express";
+import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
 import { createAccount, isValidLoginInfo } from "./Utils/userDB";
@@ -9,6 +9,8 @@ import {
 } from "./Utils/jwt";
 import { dotenvConfig } from "service-assist";
 dotenvConfig();
+
+const { USERS_SERVER_PORT } = process.env;
 
 const app = express();
 app.use(cors());
@@ -43,4 +45,9 @@ app.post("/login", async (req, res) => {
 
 app.get("/profile", authenticateToken, (req, res) => {
   const { userId } = req as RequestWithUser;
+  console.log(userId, res);
+});
+
+app.listen(USERS_SERVER_PORT, () => {
+  console.log("Server started on port", USERS_SERVER_PORT);
 });
