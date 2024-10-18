@@ -1,9 +1,15 @@
-import { AppBar, Box, Typography } from "@mui/material";
+import { AppBar, Box, IconButton, Typography } from "@mui/material";
 import ThemeToggleButton from "./theme-toggle";
-import { Gamepad2 } from "lucide-react";
+import { CircleUser, Gamepad2 } from "lucide-react";
 import styles from "./top-app-bar.module.scss";
 
 export default function TopAppBar() {
+  const onUserClick = () => {
+    const a = document.createElement("a");
+    a.href = "/login";
+    a.click();
+  };
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar
@@ -14,7 +20,13 @@ export default function TopAppBar() {
           <Gamepad2 size="2rem" className={styles["app-logo"]} />
           <Typography variant="h4">Game-Tracker</Typography>
         </Box>
-        <ThemeToggleButton sx={{ position: "absolute", right: 0 }} />
+
+        <Box position="absolute" right='1%'>
+          <ThemeToggleButton />
+          <IconButton onClick={onUserClick} edge="end">
+            <CircleUser />
+          </IconButton>
+        </Box>
       </AppBar>
     </Box>
   );
