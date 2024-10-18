@@ -21,7 +21,7 @@ export default function TopAppBar() {
           <Typography variant="h4">Game-Tracker</Typography>
         </Box>
 
-        <Box position="absolute" right='1%'>
+        <Box position="absolute" right="1%">
           <ThemeToggleButton />
           <IconButton onClick={onUserClick} edge="end">
             <CircleUser />
