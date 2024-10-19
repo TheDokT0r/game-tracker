@@ -17,13 +17,11 @@ export default function LoginPage() {
     <div>
       <SignForm onSubmit={onSubmit} title="Login">
         <TextField
-          sx={{ widows: "50%" }}
           type="email"
           label="Email"
           onChange={(e) => setEmail(e.target.value)}
         />
         <TextField
-          sx={{ width: "50" }}
           type="password"
           label="Password"
           onChange={(e) => setPassword(e.target.value)}
