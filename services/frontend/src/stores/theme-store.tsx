@@ -15,7 +15,7 @@ const STORAGE_KEY = "app_theme";
 const getInitialTheme = (): AppTheme => {
   if (typeof window !== "undefined") {
     const storageTheme = window.localStorage.getItem(
-      STORAGE_KEY
+      STORAGE_KEY,
     ) as AppTheme | null;
     if (!storageTheme) {
       window.localStorage.setItem(STORAGE_KEY, "dark");
