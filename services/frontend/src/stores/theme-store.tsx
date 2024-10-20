@@ -13,20 +13,28 @@ interface ThemeStoreProps {
 const STORAGE_KEY = "app_theme";
 
 const getInitialTheme = (): AppTheme => {
-  const storageTheme = window.localStorage.getItem(STORAGE_KEY) as AppTheme | null;
-  if (!storageTheme) {
-    window.localStorage.setItem(STORAGE_KEY, "dark");
-    return "dark";
+  if (typeof window !== "undefined") {
+    const storageTheme = window.localStorage.getItem(
+      STORAGE_KEY
+    ) as AppTheme | null;
+    if (!storageTheme) {
+      window.localStorage.setItem(STORAGE_KEY, "dark");
+      return "dark";
+    }
+
+    return storageTheme;
   }
 
-  return storageTheme;
+  return "dark";
 };
 
 const useTheme = create<ThemeStoreProps>((set, get) => ({
   theme: getInitialTheme(),
   setTheme: (newTheme) => {
     set({ theme: newTheme });
-    window.localStorage.setItem(STORAGE_KEY, newTheme);
+    if (typeof window !== "undefined") {
+      window.localStorage.setItem(STORAGE_KEY, newTheme);
+    }
   },
   switchTheme: () => {
     if (get().theme === "dark") {
