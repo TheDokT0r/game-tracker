@@ -33,7 +33,9 @@ export default function Page() {
           Login
         </Button>
       </SignForm>
-      <Typography className={styles.formFooter} variant="body1">Don&apos;t have an account? <Link href="/signup">Create one today!</Link>
+      <Typography className={styles.formFooter} variant="body1">
+        Don&apos;t have an account?{" "}
+        <Link href="/account/register">Create one today!</Link>
       </Typography>
     </div>
   );

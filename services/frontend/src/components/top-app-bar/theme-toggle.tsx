@@ -1,3 +1,5 @@
+"use client";
+
 import { IconButton, IconButtonProps } from "@mui/material";
 import useTheme from "@/stores/theme-store";
 import { Moon, Sun } from "lucide-react";
