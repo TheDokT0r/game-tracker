@@ -1,5 +1,5 @@
 "use client";
-import { createTheme } from "@mui/material";
+import { createTheme, ThemeProvider } from "@mui/material";
 import { create } from "zustand";
 
 type AppTheme = "light" | "dark";
@@ -13,9 +13,9 @@ interface ThemeStoreProps {
 const STORAGE_KEY = "app_theme";
 
 const getInitialTheme = (): AppTheme => {
-  const storageTheme = localStorage.getItem(STORAGE_KEY) as AppTheme | null;
+  const storageTheme = window.localStorage.getItem(STORAGE_KEY) as AppTheme | null;
   if (!storageTheme) {
-    localStorage.setItem(STORAGE_KEY, "dark");
+    window.localStorage.setItem(STORAGE_KEY, "dark");
     return "dark";
   }
 
@@ -26,7 +26,7 @@ const useTheme = create<ThemeStoreProps>((set, get) => ({
   theme: getInitialTheme(),
   setTheme: (newTheme) => {
     set({ theme: newTheme });
-    localStorage.setItem(STORAGE_KEY, newTheme);
+    window.localStorage.setItem(STORAGE_KEY, newTheme);
   },
   switchTheme: () => {
     if (get().theme === "dark") {
@@ -50,3 +50,17 @@ export const lightTheme = createTheme({
     mode: "light",
   },
 });
+
+export function ThemeLayoutProvider({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const { theme } = useTheme();
+
+  return (
+    <ThemeProvider theme={theme === "dark" ? lightTheme : darkTheme}>
+      {children}
+    </ThemeProvider>
+  );
+}
