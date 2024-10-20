@@ -1,3 +1,5 @@
+"use client"
+
 import { AppBar, Box, IconButton, Typography } from "@mui/material";
 import ThemeToggleButton from "./theme-toggle";
 import { CircleUser, Gamepad2 } from "lucide-react";

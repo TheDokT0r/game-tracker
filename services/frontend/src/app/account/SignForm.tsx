@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, Typography, Box, CardContent } from "@mui/material";
-import styles from "./LoginPage.module.scss";
+import styles from "./SignForm.module.scss";
 
 interface SignFormProps {
   children?: JSX.Element | JSX.Element[];

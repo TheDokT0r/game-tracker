@@ -1,19 +1,36 @@
-import { useState } from "react";
-import SignForm from "./SignForm";
-import { TextField, Button, Typography, Link } from "@mui/material";
-import styles from "./LoginPage.module.scss";
+"use client";
 
-export default function SignupPage() {
+import { useState } from "react";
+import SignForm from "../SignForm";
+import { TextField, Button, Typography, Link } from "@mui/material";
+import styles from "../SignForm.module.scss";
+
+export default function Page() {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  const userData = { email, username, password, confirmPassword };
-
-  const onSubmit = (e: React.FormEvent) => {
+  const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.table(userData);
+
+    if (password !== confirmPassword) return;
+
+    const response = await fetch("http://localhost:3001/signup", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+
+      body: JSON.stringify({
+        username,
+        email,
+        password,
+      }),
+    });
+
+    console.log(response);
   };
 
   return (

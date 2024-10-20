@@ -1,9 +1,11 @@
+"use client";
+
 import { Button, TextField, Typography, Link } from "@mui/material";
 import { useState } from "react";
-import SignForm from "./SignForm";
-import styles from "./LoginPage.module.scss";
+import SignForm from "@/app/account/SignForm";
+import styles from "../SignForm.module.scss";
 
-export default function LoginPage() {
+export default function Page() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -31,8 +33,7 @@ export default function LoginPage() {
           Login
         </Button>
       </SignForm>
-      <Typography className={styles.formFooter} variant="body1">
-        Don't have an account? <Link href="/signup">Create one today!</Link>
+      <Typography className={styles.formFooter} variant="body1">Don&apos;t have an account? <Link href="/signup">Create one today!</Link>
       </Typography>
     </div>
   );
